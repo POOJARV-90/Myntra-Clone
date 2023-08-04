@@ -1,0 +1,74 @@
+#login {
+
+    width: 100%;
+    /* height: 500px; */
+    /* border: 1px solid#d4d4d9; */
+  
+   background-color: rgb(255, 240, 243);
+   padding-top: 3%;
+
+
+}
+
+#login>div {
+    width: 30%;
+    /* height: 500px; */
+    border: 1px solid #d4d4d9;
+    margin: auto;
+    margin-top: 70px;
+    background-color: white;
+}
+
+ #login>div>div:nth-child(1) {
+    height: 150px; 
+     border: 1px solid #d4d4d9; 
+}  
+
+#login>div>div:nth-child(2)>div {
+    width: 90%;
+    margin: auto;
+    border: 1px solid #d4d4d9;
+    /* height: 500px; */
+    margin-top: 20px;
+   
+}
+
+#login>div>div:nth-child(2)>p:nth-child(1){
+     margin-left: 25PX;
+     margin-top: 10PX;
+      font-size: large;
+      /* color: #FF3F6C; */
+}
+
+#login>div>div:nth-child(2)>p:nth-child(7){
+      text-align: center;
+      font-size:x-small;
+      margin-top: 20PX;
+}
+
+#login>div>div:nth-child(2)>p:nth-child(7)>b{
+    color:#FF3F6C;
+    font-weight: bold;
+}
+
+.input {
+    height: 30px;
+    width: 100%;
+    border: 1px solid #d4d4d9;
+}
+.input>input{
+    width:100%;
+    height:100%;
+    border: NONE;
+}
+
+#login>div>div:nth-child(2)>button{
+    width: 90%;
+    height: 40PX;
+    margin-left: 20PX;
+    margin-top: 20PX;
+    color:white;
+    background-color:#FF3F6C;
+    border: none;
+    margin-bottom: 20PX;
+}

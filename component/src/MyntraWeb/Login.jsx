@@ -1,7 +1,6 @@
 import React from 'react'
-import '../MyntraWeb/Register.css'
 
-const Register = () => {
+const Login = () => {
   return (
     <>
       <div id="login">
@@ -14,12 +13,7 @@ const Register = () => {
                 <form>
 
                     <p><b>Log In or Sign Up</b></p>
-                    <div class="input">
-                        <input type="text" placeholder="Name" />
-                    </div>
-                    <div class="input">
-                        <input type="number" placeholder="Mobile Number" />
-                    </div>
+                    
                     <div class="input">
                         <input type="email" placeholder="Email" />
                     </div>
@@ -32,7 +26,7 @@ const Register = () => {
                         COUNTINUE
                     </button> */}
 
-                    <input type="submit" value="COUNTINUE"/>
+                    <input type="submit" value="LOGIN"/>
 
                 </form>
             </div>
@@ -41,4 +35,4 @@ const Register = () => {
   )
 }
 
-export default Register
+export default Login

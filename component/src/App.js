@@ -7,6 +7,8 @@ import Register from './MyntraWeb/Register';
 import Login from './MyntraWeb/Login';
 import Multipleproduct from './MyntraWeb/Multipleproduct';
 import Addproduct from './MyntraWeb/Addproduct';
+import Singleproduct from './MyntraWeb/Singleproduct';
+import Cart from './MyntraWeb/Cart';
 
 function App() {
   return (
@@ -19,6 +21,8 @@ function App() {
        <Route exact path='/Login' element={<Login/>}/>
        <Route exact path='/Multipleproduct' element={<Multipleproduct/>}/>
        <Route exact path='/Addproduct' element={<Addproduct/>}/>
+       <Route exact path='/Singleproduct' element={<Singleproduct/>}/>
+       <Route exact path='/Cart' element={<Cart/>}/>
       </Routes>
       
     </div>

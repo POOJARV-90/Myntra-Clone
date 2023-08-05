@@ -1,0 +1,37 @@
+#body-add{
+    width: 100%;
+    margin-top: 160px;
+    display: flex;
+    align-items: center;
+    /* border: 1px solid red; */
+}
+
+#body-add>form{
+    color: rgb(180, 21, 87);
+    padding: 2%;
+    margin: auto;
+    width: 50%;
+    height: 300px;
+    background-repeat: no-repeat;
+    border: 2px solid rgb(180, 21, 87);
+    background-position: 100% 90%;
+    right: 0%;
+    background-size: contain;
+    
+
+    background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTk7iovw9G--HxGn0qqBsqRmfZ9mef0OtLplw&usqp=CAU"); 
+}
+
+#body-add>form>input{
+    margin-top: 1%;
+    border: 1px solid rgb(180, 21, 87);
+    padding: 1%;
+    width: 50%;
+}
+#body-add>form>input:last-child{
+    width: 20%;
+    margin-left: 80%;
+    font-weight: bold;
+    cursor: pointer;
+    color: rgb(180, 21, 87);
+}

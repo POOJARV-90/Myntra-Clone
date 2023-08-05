@@ -66,7 +66,7 @@ const Singleproduct = () => {
         }
       }
       alert("Product successfully added to cart!");
-      router("/AllProducts");
+      router("/Multipleproduct");
     } else {
       alert("You can't add a product before logging in!");
     }
@@ -160,7 +160,7 @@ const Singleproduct = () => {
             {userData?.role === "Seller" ? (<div>
                 <i className="fa-solid fa-bag-shopping"></i>
                 <b  onClick={uptoDate}>EDIT PRODUCT</b>
-              </div>): (<div>
+              </div>): (<div   onClick={addCart} >
                 <i className="fa-solid fa-bag-shopping"></i>
                 <b>ADD TO BAG</b>
                 {/* //ADDCART */}

@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import"../MyntraWeb/Addproduct.css"
 
 import { useNavigate } from 'react-router-dom';
 import { v4 as uuidv4 } from 'uuid';
@@ -49,7 +50,7 @@ const Addproduct = () => {
     }, [])
 
     return (
-        <div id='body'>
+        <div id='body-add'>
            
             <form onSubmit={handleSubmit}>
             <h4>ADD PRODUCT</h4>
@@ -72,7 +73,7 @@ const Addproduct = () => {
                     <option value="Home & Kitchen">Home & Kitchen</option>
                     <option value="Electronics">Electronics</option>
                 </select><br />
-                <input type='submit'  value='Add Product' /><br />
+                <input type='submit'  value='Add Product' />
 
                 
             </form>

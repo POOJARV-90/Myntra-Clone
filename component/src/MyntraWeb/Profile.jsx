@@ -1,7 +1,54 @@
-import React from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import '../MyntraWeb/Profile.css'
+import { Authcontext } from './Context/Authcontext';
+import { useNavigate } from 'react-router-dom';
 
 const Profile = () => {
+    const { state, login  } = useContext(Authcontext);
+
+  const router = useNavigate();
+  const [userData, setUserData] = useState({});
+  console.log(userData, "abc");
+
+  useEffect(() => {
+    const currentUser = JSON.parse(localStorage.getItem("CurrentUser"));
+    if (!currentUser) {
+      router("/login");
+    }
+    const allUsers = JSON.parse(localStorage.getItem("Users"));
+    if (currentUser && allUsers) {
+      for (var i = 0; i < allUsers.length; i++) {
+        if (allUsers[i].email == currentUser.email && allUsers[i].password == currentUser.password) {
+          setUserData(allUsers[i]);
+        }
+      }
+    }
+  }, []);
+
+  function handleChange(event) {
+    setUserData({ ...userData, [event.target.name]: event.target.value })
+}
+
+  function handleSubmit(event) {
+    event.preventDefault();
+    const currentUser = JSON.parse(localStorage.getItem("CurrentUser"));
+    const allUsers = JSON.parse(localStorage.getItem("Users"));
+    for (var i = 0; i < allUsers.length; i++) {
+      if (allUsers[i].email == currentUser.email && allUsers[i].password == currentUser.password) {
+        allUsers[i].name = userData.name;
+        allUsers[i].password = userData.password;
+        currentUser.password = userData.password;
+        currentUser.name = userData.name;
+      }
+    }
+
+    login(currentUser);
+    localStorage.setItem("CurrentUser", JSON.stringify(currentUser));
+    localStorage.setItem("Users", JSON.stringify(allUsers));
+    setUserData({})
+    alert("Profile updated.");
+  }
+
   return (
     <>
       <div id="Profile">
@@ -11,7 +58,7 @@ const Profile = () => {
     <div>
         <h4>Account</h4>
 
-        <span>Pooja Vishwakarma </span>
+        <span>{state?.userData?.name} </span>
 
     </div>
 
@@ -59,77 +106,16 @@ const Profile = () => {
         {/* <!-- RIGHT --> */}
         <div>
 
-            <div>
+            <div id='edit-pro'>
                 <p>Profile Details</p>
-
-                <table>
-                    <tbody>
-
-                        <tr>
-                            <td>Full Name</td>
-                            <td>Pooja Vishwakarma</td>
-
-
-                        </tr>
-
-
-                        <tr>
-                            <td>Mobile Number</td>
-                            <td> 8286268288</td>
-
-
-                        </tr>
-
-
-                        <tr>
-                            <td>Email ID </td>
-                            <td> poojarv366@gmail.com</td>
-
-
-                        </tr>
-
-
-                        <tr>
-                            <td>Gender </td>
-                            <td> FEMALE</td>
-
-                        </tr>
-
-                        <tr>
-                            <td>Date of Birth </td>
-                            <td> not added</td>
-
-                        </tr>
-
-                        <tr>
-                            <td>Location</td>
-                            <td> not added</td>
-
-                        </tr>
-
-                        <tr>
-                            <td>Alternate Mobile</td>
-                            <td> not added</td>
-
-                        </tr>
-
-                        <tr>
-                            <td>Hint Name</td>
-                            <td> not added</td>
-
-                        </tr>
-
-
-                    </tbody>
-
-
-                </table>
-
-                <div>
-                    <button id="button">EDIT</button>
-
-
-                </div>
+                <form onSubmit={handleSubmit}>
+                <label>Change Name</label><br />
+                <input type='text' value={userData.name} name="name" onChange={handleChange} /><br />
+                <label>Change Password</label><br />
+                <input type='text' value={userData.password} name="password" onChange={handleChange} /><br />
+                <input className='button-pro' type='submit'/>
+               </form>
+             
 
 
             </div>

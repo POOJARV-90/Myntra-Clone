@@ -26,7 +26,7 @@ const Navbar = () => {
   return (
     <>
       <div id="navbar">
-        <div id="logo">
+        <div id="logo" onClick={() => router("/")}>
           <div>
             <img
               src="https://gumlet.assettype.com/afaqs%2F2021-01%2F51966c7c-de5b-4092-ac03-e1f5e6152b32%2Fmyntra.png?auto=format%2Ccompress&w=640&dpr=1.0"
@@ -35,7 +35,7 @@ const Navbar = () => {
           </div>
         </div>
         <div id="sections">
-          <div> MEN </div>
+          <div onClick={() => router("/Multipleproduct")}> MEN </div>
           <div>WOMEN </div>
           <div>KIDS</div>
           <div>HOME LIVING</div>
@@ -59,15 +59,22 @@ const Navbar = () => {
             <i className="fa-regular fa-heart"></i>
             <p>Wishlist</p>
           </div>
-          <div>
+          <div onClick={() => router("/Cart")}>
             <i className="fa-solid fa-bag-shopping"></i>
             <p>Cart</p>
           </div>
+          
+          {userdata?.role == "Seller" && (
+          <div onClick={() => router("/Addproduct")}>
+          <i className="fa-solid fa-plus"></i>
+          <p> <small>Add product</small> </p>
+          </div>
+           )}
         </div>
         {display && (<div id="menudown" onMouseLeave={handleMouseLeave}>
           <h5>wellcome</h5>
           <p>To access account and manage orders</p>
-          {userdata?.email?  (<button>logout</button>) :  (<button>sign in</button>) }
+          {userdata?.email?  (<span style={{color:"rgb(180, 21, 87)", fontSize:"15px" ,fontWeight:"600"}} > {userdata.name} </span>) :  (<button  onClick={() => router("/Login")} id="menu-down-button">sign in / sign up</button>) }
 
           <div>
             <p>Orders</p>
@@ -78,12 +85,25 @@ const Navbar = () => {
           </div>
 
           <div>
-            <p>Orders</p>
-            <p>Wishlist</p>
-            <p>Gift Cards</p>
-            <p>Contact Us</p>
-            <p>Myntra Insider</p>
+            <p> Myntra Credite</p>
+            <p>Coupons</p>
+            <p>Saved Cards</p>
+            <p>Saved VPA</p>
+            <p>Saved Addresses</p>
+          
+
           </div>
+
+          {userdata?.email ?
+
+          <div>
+            <p onClick={() => router("/Profile")}>Edit profile</p>
+            <p onClick={logout} >LOG OUT</p>
+          </div> : null
+          
+        }
+
+          
         </div>)}
 
         

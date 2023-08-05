@@ -1,50 +1,120 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "../MyntraWeb/Cart.css";
+import { useNavigate } from "react-router-dom";
+
 
 const Cart = () => {
+  const [finalprice, setFinalPrice] = useState(0);
+  const [userCart, setUserCart] = useState([]);
+  const router = useNavigate();
+
+  useEffect(() => {
+    const user = JSON.parse(localStorage.getItem("CurrentUser"));
+    if (user?.email) {
+      const allUsers = JSON.parse(localStorage.getItem("Users"));
+      for (var i = 0; i < allUsers.length; i++) {
+        if (
+          allUsers[i].email === user.email &&
+          allUsers[i].password === user.password
+        ) {
+          setUserCart(allUsers[i].cart);
+          break;
+        }
+      }
+    } else {
+      alert("Please login to watch all cart products.");
+      router("/Login");
+    }
+  }, []);
+
+  useEffect(() => {
+    if (userCart.length) {
+      var totalprice = 0;
+      for (var i = 0; i < userCart.length; i++) {
+        totalprice += parseInt(userCart[i].price);
+      }
+      setFinalPrice(totalprice);
+    }
+  }, [userCart]);
+
+  useEffect(() => {
+    const user = JSON.parse(localStorage.getItem("CurrentUser"));
+    if (user) {
+      if (user?.role === "Seller") {
+        alert("Access granted only to Buyer.");
+        router("/");
+      }
+    } else {
+      alert("You are not a Logged in user.");
+      router("/Login");
+    }
+  }, []);
+
+  function checkout() {
+    const user = JSON.parse(localStorage.getItem("CurrentUser"));
+    if (user?.email) {
+      const allUsers = JSON.parse(localStorage.getItem("Users"));
+      for (var i = 0; i < allUsers.length; i++) {
+        if (
+          allUsers[i].email === user.email &&
+          allUsers[i].password === user.password
+        ) {
+          allUsers[i].cart = [];
+          break;
+        }
+      }
+      localStorage.setItem("Users", JSON.stringify(allUsers));
+    }
+    setFinalPrice([]);
+    setUserCart([]);
+    alert("Your products will be delivered soon. Thank you for shopping!");
+  }
+
   return (
     <>
       <div id="cartdetails">
         <div>
           <div>
-            <div id="cartproductdetails">
-            <div id="cart-product-added">
-                      <div id="cart-product-img">
-                        <img src="https://assets.myntassets.com/f_webp,dpr_1.0,q_60,w_210,c_limit,fl_progressive/assets/images/15096882/2021/8/30/c344b1e1-76fe-4b23-8f74-d78c0ea435561630304263230-Berrylush-Black-Puff-Sleeve-Allover-Cherry-Print-Dress-25116-1.jpg" alt="" />
-                      </div>
+            {userCart.length > 0 ? (
+              <div id="cartproductdetails">
+                {userCart.map((pro) => (
+                  <div id="cart-product-added" key={pro.id}>
+                    <div id="cart-product-img">
+                      <img src={pro.image} alt="" />
+                    </div>
+                    <div>
                       <div>
-                        <div>
-                          <p>mcmbcbzcn</p>{" "}
-                          <span>Delivery by 14th JulFREE</span>
-                        </div>
-                        <p>mmsfsdfnmsnfmsn</p>
-                        <span>₹.00</span>
-                       
-                        <p id="abc">
-                          <span>Color: Fuchsia</span> <span>Size: S</span>
-                        </p>
+                        <p>mcmbcbzcn</p>{" "}
+                        <span>Delivery by 14th Jul FREE</span>
+                      </div>
+                      <p>{pro.name}</p>
+                      <span>₹ {pro.price}</span>
 
-                        <div id="sum-up">
-                          <span>Quantity: 
+                      <p id="abc">
+                        <span>Color: Fuchsia</span> <span>Size: S</span>
+                      </p>
+
+                      <div id="sum-up">
+                        <span>
+                          Quantity:
                           <select name="" id="">
                             <option value="">1</option>
-                            <option value="">1</option>
-                            <option value="">1</option>
+                            <option value="">2</option>
+                            <option value="">3</option>
                           </select>
-
-                          </span>
-                         
-
-                         
-                          <span>Remove</span>
-                        </div>
+                        </span>
+                        <span>Remove</span>
                       </div>
                     </div>
-
-                    
-             
-            </div>
-            {/* ends here cartproductdetails */}
+                  </div>
+                ))}
+              </div>
+            ) : (
+              <div id="cartproductdetails">
+                <h3 style={{color:"#f73c4f" , textAlign:"center"}}> <br />   No products in the cart</h3>
+                <img src="https://cdn.dribbble.com/users/324185/screenshots/15805709/after-login-no-product-on-cart-2_10.14.19_pm_1x.jpg" alt="" />
+              </div>
+            )}
           </div>
           {/* =============================== */}
           <div>
@@ -82,11 +152,13 @@ const Cart = () => {
                   <tbody>
                     <tr>
                       <td>Total MRP</td>
-                      <td>₹2000</td>
+                      <td>₹ {finalprice}</td>
                     </tr>
                     <tr>
                       <td>Discount On MRP</td>
-                      <td style={{ color: "#03aeb8" }}>-₹1280</td>
+                      <td style={{ color: "#03aeb8" }}>
+                        ₹ {finalprice - 200}
+                      </td>
                     </tr>
                     <tr>
                       <td>Coupon Discount</td>
@@ -97,17 +169,17 @@ const Cart = () => {
                         Convenience fee{" "}
                         <b style={{ color: "#FF3F6C" }}>know more</b>
                       </td>
-                      <td>₹90</td>
+                      <td>90</td>
                     </tr>
                   </tbody>
                 </table>
                 <div id="totalamt">
                   <div>
                     <div>Total Amount</div>
-                    <div>₹981</div>
+                    <div>₹ {finalprice - 200 - 90}</div>
                   </div>
                   <div>
-                    <button>PLACE ORDER</button>
+                    <button onClick={checkout}>PLACE ORDER</button>
                   </div>
                 </div>
               </div>

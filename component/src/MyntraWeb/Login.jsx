@@ -62,7 +62,9 @@ const Login = () => {
                         <input type="password" name="password" onChange={hangleChange} value={userdata.password}  placeholder="enter password" />
                     </div>
                    
-                    <p className='tagline'>By Continuing , i agree to the <b>Terms of Use</b>& <b>Privacy & Policy</b></p>
+                    <p className='tagline'>By Continuing , i agree to the <b>Terms of Use</b>& <b>Privacy & Policy</b> <br /> <br />
+                    Haven't Registerd yet <b onClick={() => router("/Register")}>Click here</b>
+                    </p>
                     
 
                     <input type="submit" value="LOGIN"/>

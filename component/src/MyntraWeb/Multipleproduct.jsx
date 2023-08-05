@@ -165,7 +165,7 @@ const Multipleproduct = () => {
 
                     </div>
 
-                    <div style={{border:'1px solid red'}}>
+                    <div>
 
                     {!isProductsExist ? <div>No products</div>
                         :

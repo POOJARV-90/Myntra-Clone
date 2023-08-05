@@ -1,44 +1,104 @@
-import React from 'react'
-import '../MyntraWeb/Register.css'
+import React, { useState } from "react";
+import "../MyntraWeb/Register.css";
+import { useNavigate } from "react-router-dom";
 
 const Register = () => {
+    const [userdata, setUserdata] = useState({
+        name: "",
+        email: "",
+        password: "",
+        role: "Buyer",
+      });
+      const router = useNavigate();
+      const handlechange = (event) => {
+        setUserdata({ ...userdata, [event.target.name]: event.target.value });
+      };
+      console.log(userdata);
+
+      const handleSubmit = (event) => {
+        event.preventDefault();
+        if (userdata.name && userdata.email && userdata.password) {
+          const array = JSON.parse(localStorage.getItem("Users")) || [];
+    
+          const userobject = {
+            name: userdata.name,
+            email: userdata.email,
+            password: userdata.password,
+            role: userdata.role,
+            cart: [],
+          };
+          array.push(userobject);
+          localStorage.setItem("Users", JSON.stringify(array));
+    
+          setUserdata({ name: "", email: "", password: "", role: "Buyer" });
+          router("/Login");
+          alert("Registerd succesfully");
+        } else {
+          alert("please submit the require details");
+        }
+      };
+
+      function selectrole(event) {
+        // console.log(event.target.value ,"role")
+        setUserdata({ ...userdata, ["role"]: event.target.value });
+      }
+
   return (
     <>
       <div id="login">
-            <div>
-                <div>
-                    <img src="https://assets.myntassets.com/f_webp,dpr_1.5,q_60,w_400,c_limit,fl_progressive/assets/images/2023/2/7/c2be095d-a4fb-4981-bdad-9d69ea189da31675792659902-offer-banner-500-600x240-code-_-MYNTRA200.jpg"
-                        width="100%" height="100%"/>
-
-                </div>
-                <form>
-
-                    <p><b>Log In or Sign Up</b></p>
-                    <div class="input">
-                        <input type="text" placeholder="Name" />
-                    </div>
-                    <div class="input">
-                        <input type="number" placeholder="Mobile Number" />
-                    </div>
-                    <div class="input">
-                        <input type="email" placeholder="Email" />
-                    </div>
-                    <div class="input">
-                        <input type="password" placeholder="enter password" />
-                    </div>
-                   
-                    <p className='tagline'>By Continuing , i agree to the <b>Terms of Use</b>& <b>Privacy & Policy</b></p>
-                    {/* <button>
-                        COUNTINUE
-                    </button> */}
-
-                    <input type="submit" value="COUNTINUE"/>
-
-                </form>
+        <div>
+          <div>
+            <img
+              src="https://assets.myntassets.com/f_webp,dpr_1.5,q_60,w_400,c_limit,fl_progressive/assets/images/2023/2/7/c2be095d-a4fb-4981-bdad-9d69ea189da31675792659902-offer-banner-500-600x240-code-_-MYNTRA200.jpg"
+              width="100%"
+              height="100%"
+            />
+          </div>
+          <form onSubmit={handleSubmit}>
+            <p>
+              <b>Log In or Sign Up</b>
+            </p>
+            <div className="input">
+              <input value={userdata.name}
+                     type="text"
+                     onChange={handlechange}
+                     name="name"
+                     placeholder="Name" 
+                     />
             </div>
+            
+            <div className="input">
+              <input  value={userdata.email}
+                      type="email"
+                       onChange={handlechange}
+                       name="email" placeholder="Email" />
+            </div>
+            <br />
+           
+            <label htmlFor="">Select Role : </label>
+            <select id="select" onChange={selectrole}  >
+              <option value="Buyer">Buyer</option>
+              <option value="Seller">Seller</option>
+            </select>{" "}
+            <br />
+            <div className="input">
+              <input  value={userdata.password}
+                      type="password"
+                      onChange={handlechange}
+                      name="password"
+                      placeholder="enter password" />
+            </div>
+            <p className="tagline">
+              By Continuing , i agree to the <b>Terms of Use</b>&{" "}
+              <b>Privacy & Policy</b>
+            </p>
+            
+            <input type="submit" value="COUNTINUE" />
+          </form>
         </div>
+      </div>
     </>
-  )
-}
+  );
+};
 
-export default Register
+export default Register;

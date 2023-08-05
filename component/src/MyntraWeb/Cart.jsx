@@ -14,26 +14,28 @@ const Cart = () => {
                       </div>
                       <div>
                         <div>
-                          <p></p>{" "}
+                          <p>mcmbcbzcn</p>{" "}
                           <span>Delivery by 14th JulFREE</span>
                         </div>
+                        <p>mmsfsdfnmsnfmsn</p>
                         <span>₹.00</span>
+                       
                         <p id="abc">
                           <span>Color: Fuchsia</span> <span>Size: S</span>
                         </p>
 
                         <div id="sum-up">
-                          <span>Quantity:</span>
+                          <span>Quantity: 
                           <select name="" id="">
                             <option value="">1</option>
                             <option value="">1</option>
                             <option value="">1</option>
                           </select>
 
-                          <span id="total">
-                            <i class="fa-regular fa-heart"></i>
-                            <span>Save to wishlist</span>
                           </span>
+                         
+
+                         
                           <span>Remove</span>
                         </div>
                       </div>

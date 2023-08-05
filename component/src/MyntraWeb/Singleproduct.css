@@ -2,6 +2,7 @@
 #Main {
     width: 100%;
     margin-top: 100px;
+    position: relative;
     
     /* border: 1px solid red; */
     /* height: 600px; */
@@ -117,7 +118,7 @@ transform: scale(1.1); */
     color: #ff905a;
 }
 
-#button {
+#button-sig {
     margin-left: 35px;
     margin-top: 30px;
     border: none;
@@ -507,11 +508,10 @@ input {
     margin-bottom: 10px;
 }
 
-/* #similarproduct{
-width: 100%;
-height: 500px;
-border: 1px solid red;
-} */
+#similarproduct{
+/* border-bottom: 1px solid grey; */
+margin-bottom: 3%;
+}
 
 /* SIMILARPRODUCT 3*/
 
@@ -584,3 +584,28 @@ border: 1px solid red;
     font-size: small;
     color: #ff905a;
 }
+
+/* .editpro{
+    border:'1px solid red';
+    position:"absolute";
+    margin:'auto';
+    z-index: 1;
+    width: 50%;
+} */
+
+.update-form-container {
+    height: 360px;
+    padding: 5%;
+    text-align: center;
+    position: absolute;
+    top: 10%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+    background: #ffffff;
+    padding: 10px;
+    border: 1px solid #808080;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+    /* Add any other styles you want for the form container */
+  }
+  

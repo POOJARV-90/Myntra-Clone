@@ -7,6 +7,8 @@
    background-color: rgb(255, 240, 243);
    padding-top: 3%;
    padding-bottom: 5%;
+   text-align: center;
+  
 
 
 }
@@ -15,6 +17,7 @@
     width: 30%;
     /* height: 500px; */
     border: 1px solid #d4d4d9;
+   
     margin: auto;
     margin-top: 70px;
     background-color: white;
@@ -22,6 +25,7 @@
 }
 
  #login>div>div:nth-child(1) {
+    
     height: 150px; 
      border: 1px solid #d4d4d9; 
 }  
@@ -74,7 +78,7 @@
 #login>div>form:nth-child(2)>input:last-child{
     width: 85%;
     height: 40PX;
-    /* margin-left: 20PX; */
+    /* margin-left: 35PX; */
     margin-top: 20PX;
     color:white;
     background-color:#FF3F6C;

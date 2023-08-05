@@ -1,7 +1,31 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import "../MyntraWeb/Multipleproduct.css"
+import { useNavigate } from 'react-router-dom';
 
 const Multipleproduct = () => {
+    const [isProductsExist, setIsProductsExist] = useState(false);
+    const [products, setProducts] = useState([]);
+    const router = useNavigate();
+
+    useEffect(() => {
+        const productsFromDb = JSON.parse(localStorage.getItem("Products"))
+        if (productsFromDb?.length) {
+            setIsProductsExist(true);
+            setProducts(productsFromDb)
+        } else {
+            setIsProductsExist(false)
+            setProducts([])
+        }
+    }, [])
+
+    const tosingleproduct = (id) =>{
+        console.log(id,"id")
+          router(`/Singleproduct/${id}`)
+    }
+
+    console.log(products, " - products")
+
+
   return (
     <>
        <div id="main-mulpro">
@@ -140,37 +164,33 @@ const Multipleproduct = () => {
                         </div>
 
                     </div>
-                    <div>
-                        <div>
-                            <img
-                                src="https://assets.myntassets.com/f_webp,dpr_1.0,q_60,w_210,c_limit,fl_progressive/assets/images/21470666/2023/1/9/3eadbe83-b0fe-46b3-a64e-a2d8c961eeff1673257968564Printedjerseytop1.jpg"/>
-                            <p>H&M
+
+                    <div style={{border:'1px solid red'}}>
+
+                    {!isProductsExist ? <div>No products</div>
+                        :
+                        <>
+                         {products && products.map((pro) =>(
+                            <div  onClick={() => tosingleproduct(pro.id)} id='single-pro' key={pro.name}  >
+                             <img src={pro.image} />
+                            <p>{pro.name}
                                
                              
                                 </p>
-                            <p> Girls Printed Jersey Top
+                            <p> {pro.category}
                             </p>
-                            <span> Rs. 239</span> <span><s>Rs.1849</s></span><span>  (40% OFF)</span>
+                            <span> Rs.{pro.price} </span> <span><s>Rs.1849</s></span><span>  (40% OFF)</span>
 
                         </div>
+                         ))}
+                        
+                        </>
 
                         
 
-                        
+                    }
 
-                       
-
-                       
-
-                       
-
-
-                        
-
-
-
-
-
+        
 
                     </div>
 

@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 
 import { useNavigate } from 'react-router-dom';
 import { Authcontext } from './Context/Authcontext';
@@ -39,6 +39,12 @@ const Login = () => {
           toast.error("All fields are mandtory.")
       }
   }
+
+  useEffect(() => {
+    if (state?.user?.name) {
+        router('/')
+    }
+}, [state])
     
   return (
     <>

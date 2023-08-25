@@ -6,7 +6,8 @@ import { useNavigate } from "react-router-dom";
 const Navbar = () => {
   const [userdata, setUserdata] = useState();
   const [display, setDisplay] = useState(false);
-  const { state, logout } = useContext(Authcontext);
+  const { state } = useContext(Authcontext);
+  console.log(state,"state")
   const router = useNavigate();
   useEffect(() => {
     if (state?.user) {
@@ -22,6 +23,8 @@ const Navbar = () => {
   const handleMouseLeave = () => {
     setDisplay(false);
   };
+
+  console.log(userdata,"userdata ");
 
   return (
     <>
@@ -74,7 +77,7 @@ const Navbar = () => {
         {display && (<div id="menudown" onMouseLeave={handleMouseLeave}>
           <h5>wellcome</h5>
           <p>To access account and manage orders</p>
-          {userdata?.email?  (<span style={{color:"rgb(180, 21, 87)", fontSize:"15px" ,fontWeight:"600"}} > {userdata.name} </span>) :  (<button  onClick={() => router("/Login")} id="menu-down-button">sign in / sign up</button>) }
+          {userdata?.email?  (<span style={{color:"rgb(180, 21, 87)", fontSize:"15px" ,fontWeight:"600"}} > { userdata?.name} </span>) :  (<button  onClick={() => router("/Login")} id="menu-down-button">sign in / sign up</button>) }
 
           <div>
             <p>Orders</p>
@@ -98,7 +101,7 @@ const Navbar = () => {
 
           <div>
             <p onClick={() => router("/Profile")}>Edit profile</p>
-            <p onClick={logout} >LOG OUT</p>
+            <p  >LOG OUT</p>
           </div> : null
           
         }

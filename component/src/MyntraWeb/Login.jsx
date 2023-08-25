@@ -2,9 +2,11 @@ import React, { useContext, useState } from 'react'
 
 import { useNavigate } from 'react-router-dom';
 import { Authcontext } from './Context/Authcontext';
+import { toast } from 'react-hot-toast';
+import axios from 'axios';
 
 const Login = () => {
-    const {state , login} = useContext(Authcontext)
+    const {state , dispatch} = useContext(Authcontext)
 
     const [userdata, setUserdata] = useState({ email: "", password: "" ,role :""});
     const router = useNavigate();
@@ -13,34 +15,30 @@ const Login = () => {
       setUserdata({ ...userdata, [event.target.name]: event.target.value });
     };
 
-    const handleSubmit = (event) => {
-        event.preventDefault();
-        if (userdata.email && userdata.password) {
-          const users = JSON.parse(localStorage.getItem("Users")); //access to LS
-    
-          var flag = false;
-          for (var i = 0; i < users.length; i++) {
-            if (
-              users[i].email == userdata.email &&
-              users[i].password == userdata.password
-            ) {
-              flag = true;
-              localStorage.setItem(("CurrentUser"),JSON.stringify( users[i]));
-              login(users[i]);
-              alert("login succesfull")
-              setUserdata({email:"",password:"",role :""  })
-              router("/");
-              break;
-            }
-          }
-          if (flag == false) {
-               alert("Please check credentials.");   //RETURN
-          }
-          
-        } else {
-          alert("Please submit all details");
-        }
-      };
+    const handleSubmit = async (event) => {
+      event.preventDefault();
+      if ( userdata.email && userdata.password) {
+        
+              const response = await axios.post("http://localhost:8000/login", { userdata });
+              if (response.data.success) {
+
+                dispatch({
+                  type: 'LOGIN',
+                  payload: response.data.user
+              })
+              localStorage.setItem("token", JSON.stringify(response.data.token))
+                  setUserdata({ email: "", password: "" })
+                  router('/')
+                  toast.success(response.data.message)
+              } else {
+                  toast.error(response.data.message)
+              }
+  
+         
+      } else {
+          toast.error("All fields are mandtory.")
+      }
+  }
     
   return (
     <>
@@ -55,10 +53,10 @@ const Login = () => {
 
                     <p><b>Log In or Sign Up</b></p>
                     
-                    <div class="input">
+                    <div className="input">
                         <input type="email" name="email" onChange={hangleChange} value={userdata.email}  placeholder="Email" />
                     </div>
-                    <div class="input">
+                    <div className="input">
                         <input type="password" name="password" onChange={hangleChange} value={userdata.password}  placeholder="enter password" />
                     </div>
                    

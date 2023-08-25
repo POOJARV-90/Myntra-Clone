@@ -183,7 +183,7 @@ const Singleproduct = () => {
 
                     </div>
 
-                    <p class="fontsizesmall">Please enter PIN code to check delivery time & Pay on Delivery Availability
+                    <p className="fontsizesmall">Please enter PIN code to check delivery time & Pay on Delivery Availability
                     </p>
 
 

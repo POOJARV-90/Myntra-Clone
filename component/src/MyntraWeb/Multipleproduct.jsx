@@ -54,7 +54,7 @@ const Multipleproduct = () => {
                     </div>
                     <div>
 
-                        <div><span> BRAND</span> <i class="fa-solid fa-magnifying-glass"></i></div>
+                        <div><span> BRAND</span> <i className="fa-solid fa-magnifying-glass"></i></div>
                         <input type="checkbox" id="checkbox"/><label >V-Mart</label> <br />
                         <input type="checkbox" id="checkbox"/><label >Gini and Jony</label> <br />
                         <input type="checkbox" id="checkbox"/><label >max</label> <br />
@@ -112,7 +112,7 @@ const Multipleproduct = () => {
                     </div>
 
                     <div>
-                        <div><span> DISCOUNT RANGE</span> <i class="fa-solid fa-magnifying-glass"></i></div>
+                        <div><span> DISCOUNT RANGE</span> <i className="fa-solid fa-magnifying-glass"></i></div>
                         <input type="checkbox" id="checkbox"/><label >10% and above</label> <br />
                         <input type="checkbox" id="checkbox"/><label >20% and above</label> <br />
                         <input type="checkbox" id="checkbox"/><label >30% and above</label> <br />

@@ -51,7 +51,7 @@ const Home = () => {
 
 </div>
 
-<h2 class="heading">BEST OF MYNTRA EXCLUSIVE BRANDS</h2>
+<h2 className="heading">BEST OF MYNTRA EXCLUSIVE BRANDS</h2>
 
 <div>
     <div>
@@ -137,7 +137,7 @@ const Home = () => {
 
 </div>
 
-<h2 class="heading">TOP PICKS</h2>
+<h2 className="heading">TOP PICKS</h2>
 
 <div>
     <div>
@@ -178,7 +178,7 @@ const Home = () => {
 
 </div>
 
-<h2 class="heading">CATEGORIES TO BAG</h2>
+<h2 className="heading">CATEGORIES TO BAG</h2>
 <div>
     <div>
         <img src="https://assets.myntassets.com/f_webp,w_122,c_limit,fl_progressive,dpr_2.0/assets/images/2022/2/23/aa4658b5-d723-4652-9ea1-00456b355c3a1645602467046-Kurta-Sets.jpg"
@@ -298,7 +298,7 @@ const Home = () => {
     </div>
 
 </div>
-<h2 class="heading">BRANDS AT SLASHED PRICES</h2>
+<h2 className="heading">BRANDS AT SLASHED PRICES</h2>
 
 <div>
     <div>
@@ -387,7 +387,7 @@ const Home = () => {
 </div>
 
 
-<h2 class="heading">GIFTING CARDS</h2>
+<h2 className="heading">GIFTING CARDS</h2>
 
 <div>
     <div>

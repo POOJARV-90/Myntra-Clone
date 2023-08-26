@@ -84,16 +84,12 @@ export const Register = async (req, res) => {
     try {
       const { token } = req.body;
       if (!token)
-        return res
-          .status(404)
-          .json({ status: "error", message: "Token is required!" });
+        return res.json({ status: "error", message: "Token is required!" });
   
       const decoededData = jwt.verify(token, process.env.JWT_SECRET);
       console.log(decoededData, "decoededData");
       if (!decoededData) {
-        return res
-          .status(404)
-          .json({ status: "error", message: "Not valid json token.." });
+        return res.json({ status: "error", message: "Not valid json token.." });
       }
       // return res.send(decoededData)
       const userId = decoededData?.userId;
@@ -101,9 +97,7 @@ export const Register = async (req, res) => {
       const user = await UserModal.findById(userId);
   
       if (!user) {
-        return res
-          .status(404)
-          .json({ status: "error", message: "User not found.." });
+        return res.json({ status: "error", message: "User not found.." });
       }
       const userObeject = {
         name: user?.name,
